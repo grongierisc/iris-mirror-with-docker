@@ -70,7 +70,7 @@ halt
 END
 }
 
-if [ "$IRIS_MIRROR_ROLE" == "master" ]; then 
+if [ "$IRIS_MIRROR_ROLE" == "main" ]; then 
   master $IRIS_MIRROR_ARBITER
   make_backup
 else 

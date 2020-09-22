@@ -1,6 +1,13 @@
-FROM intersystems/iris:2019.4.0.383.0
+FROM docker.iscinternal.com/intersystems/iris:2020.3.0-latest
 
 USER root
+
+RUN apt-get update && apt-get install -y \
+	nano \
+    arping \
+	sudo && \
+	/bin/echo -e ${ISC_PACKAGE_MGRUSER}\\tALL=\(ALL\)\\tNOPASSWD: ALL >> /etc/sudoers && \
+	sudo -u ${ISC_PACKAGE_MGRUSER} sudo echo enabled passwordless sudo-ing for ${ISC_PACKAGE_MGRUSER}
 
 COPY session.sh /
 
@@ -23,5 +30,3 @@ do $SYSTEM.OBJ.Load("Installer.cls", "ck") \
 set sc = ##class(Demo.Installer).setup()
 
 COPY init_mirror.sh /
-
-CMD ["-a", "/init_mirror.sh"]
