@@ -1,5 +1,10 @@
 {
     "objectscript.conn": {
-        "active": false
+        "active": true,
+        "host": "localhost",
+        "port": 9092,
+        "username": "_system",
+        "password": "SYS",
+        "ns": "DEMO"
     }
 }
